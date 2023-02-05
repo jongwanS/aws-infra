@@ -96,6 +96,71 @@
     - AWS 리소스 및 온프레미스의 `자원을 모니터링하는 서비스`. `로그 저장` 및 `알람 기능 제공`
 
 ## 2. AWS Network 소개
-### 1. AWS VPC
- - ㅇ
-#### 1) ㅇ
+### 1. AWS VPC - 리소스 격리
+ - `Virtual Private Control` AWS 클라우드 내 논리적으로 독립적 섹션을 의미한다.
+ - `독립된 가상의 클라우드 네트워크`
+### 2. AWS VPN - 가상 사설망
+ - `Virtual Private Network` 공용 인터넷을 통해 가상의 사설 네트워크를 구성하여 프라이빗 통신을 제공한다.
+ - VPN 서비스는 `Site-to-Site VPN`, `클라이언트 VPN`을 제공한다.
+````
+- AWS site to site VPN 연결
+
+AWS 서울리전 - 가상 프라이빗 게이트웨이 <--> 게이트웨이 - 회사 IDC 
+````
+### 3. ELB - 로드 밸런서
+ - `Elastic Load Balancing`, 로드 밸런싱 기술이다.
+ - 서비스 대상 시스템에 대해 데이터 분산 전달 역할
+### 4. AWS PrivateLink - 프라이빗 연결
+ - 내부 네트워크 끼리 비공개 연결을 제공한다.
+### 5. Route 53 - 도메인 네임 시스템
+ - AWS에서 제공하는 DNS 서비스. Rooute 53을 통해 도메인을 구매, 호스팅 영역 설정을 통해, 도메인 질의에 대한 응답을 처리
+### 6. AWS 전송 게이트웨이 - 네트워크 확장
+ - `VPC`나 `온프레미스` 등의 네트워크를 단일 지점으로 연결할 수 있는 라우팅 서비스
+````
+AWS 서울리전 - 전송 게이트웨이 <-> AWS 홍콩리전
+                             <-> 회사 IDC
+````
+### 7. AWS Direct Connect - AWS 전용 연결
+ - AWS와의 전용 네트워크 연결을 제공하는 전용선 서비스
+### 8. AWS CloudFront - CDN(콘텐츠 전송/캐시)
+ - CDN 서비스
+### 9. AWS Global Accelerator - 글로벌 전송
+ - 로컬 or 글로벌 사용자 대상 가용성/성능 개선 서비스, 네트워크 경로를 최적화하여 트래픽 성능을 개선
+### 10. 네트워크 보안
+ - 보안 그룹, 네트워크 ACL, 웹 방화벽
+
+## 3.실습 전 사전 준비 사항
+### 1. AWS 회원 가입 및 프리 티어
+### 2. AWS 사용하기
+````
+AWS 관리 콘솔(웹)
+AWS 명령 줄 인터페이스(AWS CLI)
+소프트웨어 개발 키트(AWS SDK)
+````
+### 3. AWS 관리 콘솔 접근하기
+### 4. SSH 소개
+ - EC2 인스턴스 접근하기 위해서는 SSH(Secure SHell) 키 페이거 필요.
+ - SSH는 `SSH 서버`와 `SSH 클라이언트`로 구성된다. `SSH 클라이언트`가 `SSH 서버`에 접속하기 위해서는 인증 절차가 필요하다.
+ - SSH 인증 방식은 `유저-암호` 입력 방식, `키-페이 파일`(보통 선호)을 이용한 방식이 있음.
+````
+             SSH 연결
+SSH 클라이언트 -----> SSH 서버
+````
+### 5. AWS SSH 키 페어 생성(서울 리전)
+
+## 4. EC2 배포 및 사용
+````
+AWS 관리콘솔 EC2 배포
+사용자 PC SSH로 EC2 접근
+EC2 웹 서비스 설치
+EC2 인스턴스 삭제
+````
+## 5. CloudFormation 스택 생성 및 삭제
+- 인프라를 자동 생성/삭제 하도록 도와줌.
+
+### 1. CloudFormation
+#### 1) CloudFormation 이란
+- CloudFormation는 AWS 인프라에 대해 코드로 정의, 자동으로 자원 생성 및 삭제`(IaC, Infrastruecture as Code)`
+- 템플릿 : JSON 이나 YAML 으로 작성
+- 작성한 템플릿을 CloudFormation에 업로드 하여 자원을 생성 및 삭제 한다.
+#### 2) CloudFormation 템플릿
